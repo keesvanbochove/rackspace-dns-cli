@@ -433,11 +433,11 @@ class HTTPClient(httplib2.Http):
     def _v2_auth(self, url):
         """Authenticate against a v2.0 auth service."""
         body = {"auth": {
-                "passwordCredentials": {"username": self.user,
-                                        "password": self.password}}}
+                "RAX-KSKEY:apiKeyCredentials": {"username": self.user,
+                                        "apiKey": self.password}}}
 
         if self.projectid:
-            body['auth']['tenantName'] = self.projectid
+            body['auth']['RAX-KSKEY:apiKeyCredentials']['tenantName'] = self.projectid
 
         self._authenticate(url, body)
 
